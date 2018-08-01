@@ -6,17 +6,20 @@ import SearchPage from './SearchPage';
 import MainPage from './StartPage';
 import * as BooksAPI from './BooksAPI'
 import './App.css'
+
 class BooksApp extends React.Component {
 	state = {
 		books: []
 	}
+
 	componentDidMount() {
 		BooksAPI.getAll().then((books) => {
 			this.setState({
-				books: books
+				books
 			})
 		})
 	}
+
 	mShelf = (book, shelf) => {
 		BooksAPI.update(book, shelf);
 		BooksAPI.getAll().then((books) => {
@@ -25,6 +28,7 @@ class BooksApp extends React.Component {
 			})
 		})
 	}
+
 	render() {
 		return ( < div className = "app" > < Route exact path = "/"
 			render = {
@@ -38,15 +42,7 @@ class BooksApp extends React.Component {
 			}
 			/> < Route path = "/search"
 			render = {
-				() => ( < SearchPage mShelf = {
-						this.mShelf
-					}
-					books = {
-						this.state.books
-					}
-					/>)
-			}
-			/> < /div>)
+				() => ( < SearchPage mShelf = {this.mShelf}books = {this.state.books}/>)}/> < /div>)
 	}
 }
 export default BooksApp
