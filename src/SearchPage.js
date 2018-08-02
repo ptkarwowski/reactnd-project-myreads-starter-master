@@ -21,8 +21,7 @@ class SearchPage extends Component {
 					});
 				}
 			})
-		} else {
-			this.setState({
+		} else {this.setState({
 				searchedBooks: []
 			});
 		}
@@ -36,24 +35,31 @@ class SearchPage extends Component {
 	}
 
 	render() {
-		return ( < div className = "search-books" > < div className = "search-books-bar" > < Link to = "/"
-			className = "close-search" > Close < /Link> < div className = "search-books-input-wrapper" > < input type = "text"
-			placeholder = "Search by title or author"
-			value = {
-				this.state.query
-			}
-			onChange = {
-				(event) => this.updateQuery(event.target.value)
-			}
-			/> < /div> < /div> < div className = "search-books-results" > < ol className = "books-grid" > < /ol> {
-				this.state.searchedBooks.map(searchedBook => {
+		return ( < div className = "search-books" >
+		 < div className = "search-books-bar" > 
+		 < Link to = "/"className = "close-search" > Close < /Link> 
+		 < div className = "search-books-input-wrapper" > 
+		 < input type = "text"placeholder = "Search by title or author"
+			value = {this.state.query}
+			onChange = {(event) =>
+				 this.updateQuery(event.target.value)}/> 
+                < /div> 
+				< /div>
+				 < div className = "search-books-results" > 
+				 < ol className = "books-grid" > < /ol> 
+				 {this.state.searchedBooks.map(searchedBook => {
 					let shelf = "none";
-					this.props.books.map(book => (book.id === searchedBook.id ? shelf = book.shelf : ''));
-					return ( < li key = {searchedBook.id} > < Book book = {searchedBook}
+					this.props.books.map(book => 
+						(book.id === searchedBook.id ? shelf = book.shelf : ''));
+					return ( < li key = {searchedBook.id} > 
+					< Book book = {searchedBook}
 						mShelf = {this.props.mShelf}
-						currentShelf = {shelf}/> < /li>);
+						currentShelf = {shelf}/> 
+						< /li>);
 				})
-			} < /div> < /div>);
+			} < /div> 
+			< /div>
+			);
 	}
 }
 export default SearchPage;
